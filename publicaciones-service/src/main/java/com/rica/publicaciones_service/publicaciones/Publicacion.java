@@ -1,9 +1,9 @@
 package com.rica.publicaciones_service.publicaciones;
 
+import java.util.Map;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Map;
 
 @Document(collection = "publicaciones")
 public class Publicacion {
@@ -16,8 +16,21 @@ public class Publicacion {
     private String tipo;
     private Integer anio;
     private Map<String, String> detalles;
+    private boolean huerfana = false;
 
     public Publicacion() {
+    }
+
+    public void marcarComoHuerfana() {
+        this.huerfana = true;
+    }
+
+    public boolean isHuerfana() {
+        return huerfana;
+    }
+
+    public void setHuerfana(boolean huerfana) {
+        this.huerfana = huerfana;
     }
 
     public String getId() {
@@ -67,5 +80,4 @@ public class Publicacion {
     public void setDetalles(Map<String, String> detalles) {
         this.detalles = detalles;
     }
-
 }

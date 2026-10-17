@@ -6,4 +6,34 @@ spring:
     name: publicaciones-service
 
   mongodb:
-    uri: mongodb://localhost:27017/rica
+      uri: mongodb://localhost:27017/rica
+
+  grpc:
+    client:
+      channels:
+        investigadores:
+          target: static://localhost:9090
+          negotiation-type: plaintext
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      investigadores-service:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
