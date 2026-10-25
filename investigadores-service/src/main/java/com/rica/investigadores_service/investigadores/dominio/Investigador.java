@@ -86,4 +86,8 @@ public class Investigador {
     public void setGrupoInvestigacion(String grupoInvestigacion) {
         this.grupoInvestigacion = grupoInvestigacion;
     }
+
+    public boolean estaEnEliminacion() {
+        return this.estado == EstadoInvestigador.EN_ELIMINACION;
+    }
 }

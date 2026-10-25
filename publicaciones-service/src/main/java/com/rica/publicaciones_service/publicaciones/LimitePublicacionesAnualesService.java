@@ -13,10 +13,15 @@ public class LimitePublicacionesAnualesService {
         this.publicacionRepository = publicacionRepository;
     }
 
-    // Ahora recibe solo la Publicación
-    public boolean puedeRegistrar(Publicacion nueva) {
+    // Acepta los argumentos individuales (String, int / Integer)
+    public boolean puedeRegistrar(String investigadorCorreo, int anio) {
         long registradasEsteAnio = publicacionRepository.countByInvestigadorCorreoAndAnio(
-                nueva.getInvestigadorCorreo(), nueva.getAnio());
+                investigadorCorreo, anio);
         return registradasEsteAnio < MAXIMO_POR_ANIO;
+    }
+
+    // Sobrecarga opcional por si también deseas pasar la entidad Publicacion
+    public boolean puedeRegistrar(Publicacion nueva) {
+        return puedeRegistrar(nueva.getInvestigadorCorreo(), nueva.getAnio());
     }
 }
