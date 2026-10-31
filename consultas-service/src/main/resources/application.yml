@@ -4,15 +4,12 @@ server:
 spring:
   application:
     name: consultas-service
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/rica_consultas
+  mongodb:
+    uri: mongodb://localhost:27017/rica_consultas
 
   kafka:
-    bootstrap-servers: localhost:9092
     consumer:
-      group-id: consultas-service
-      auto-offset-reset: earliest
+      group-id: consultas-service-v2
 
 eureka:
   instance:

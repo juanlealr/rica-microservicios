@@ -1,4 +1,4 @@
-package com.rica.consultas_service.compartido;
+package com.rica.consultasservice.compartido;
 
 public class RecursoNoEncontradoException extends RuntimeException {
 

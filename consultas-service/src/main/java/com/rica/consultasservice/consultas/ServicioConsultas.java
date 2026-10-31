@@ -1,4 +1,4 @@
-package main.java.com.rica.consultasservice.consultas;
+package com.rica.consultasservice.consultas;
 
 import com.rica.consultasservice.compartido.RecursoNoEncontradoException;
 import org.springframework.data.domain.PageRequest;

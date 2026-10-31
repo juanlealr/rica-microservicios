@@ -1,4 +1,4 @@
-package main.java.com.rica.consultasservice.consultas;
+package com.rica.consultasservice.consultas;
 
 import java.util.List;
 

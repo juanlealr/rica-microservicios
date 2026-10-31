@@ -1,4 +1,4 @@
-package main.java.com.rica.consultasservice.consultas;
+package com.rica.consultasservice.consultas;
 
 /**
  * Copia desnormalizada de una publicación, embebida dentro de la ficha del
