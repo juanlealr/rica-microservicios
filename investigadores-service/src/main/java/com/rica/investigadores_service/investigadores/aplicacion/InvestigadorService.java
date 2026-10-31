@@ -63,10 +63,17 @@ public class InvestigadorService implements InvestigadorUseCase {
         outboxRepository.save(new OutboxEvent("InvestigadorEnEliminacion", payload, false));
     }
 
+    @Override
     @Transactional
     public void confirmarEliminacion(String correoInstitucional) {
-        Investigador investigador = repositorioInvestigadores.buscarPorCorreo(correoInstitucional)
-                .orElseThrow(() -> new RecursoNoEncontradoException("No existe: " + correoInstitucional));
-        repositorioInvestigadores.eliminar(investigador);
+        repositorioInvestigadores.buscarPorCorreo(correoInstitucional)
+                .filter(Investigador::estaEnEliminacion)
+                .ifPresent(investigador -> {
+                    repositorioInvestigadores.eliminar(investigador);
+
+                    String payload = """
+                            {"correoInstitucional": "%s"}""".formatted(correoInstitucional);
+                    outboxRepository.save(new OutboxEvent("InvestigadorEliminado", payload, false));
+                });
     }
 }
